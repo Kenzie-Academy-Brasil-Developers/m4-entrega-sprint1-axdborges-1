@@ -1,9 +1,17 @@
-import { Router } from "express";
+import { Router } from 'express';
 
-import createUserController from "../controllers/createUser.controller";
+import createUserController from '../controllers/createUser.controller';
+import listUsersController from '../controllers/listUsers.controller';
+import editUsersController from '../controllers/editUsers.controller';
+import deleteUsersController from '../controllers/deleteUsers.controller';
 
-const router = Router()
+import checkEmailMiddleware from '../middlewares/checkEmail.middleware';
 
-router.post("", createUserController)
+const usersRouter = Router();
 
-export default router
+usersRouter.post('', checkEmailMiddleware, createUserController);
+usersRouter.get('', listUsersController);
+usersRouter.patch('/:id', editUsersController);
+usersRouter.delete('/:id', deleteUsersController);
+
+export default usersRouter;
