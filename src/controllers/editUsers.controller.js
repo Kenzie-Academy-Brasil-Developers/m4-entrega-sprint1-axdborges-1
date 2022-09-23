@@ -1,13 +1,12 @@
-import editUsersService from "../services/editUsers.service"
+import editUsersService from '../services/editUsers.service';
 
-const editUsersController = (req, res) => {
-    const { id } = req.params
-    const data = req.body
+const editUsersController = async (req, res) => {
+	const { id } = req.params;
+	const data = req.body;
 
-    const edited = editUsersService(id, data)
+	const edited = await editUsersService(id, data);
 
-    return res.status(200).json(edited)
+	return res.status(200).json(edited);
+};
 
-}
-
-export default editUsersController
+export default editUsersController;

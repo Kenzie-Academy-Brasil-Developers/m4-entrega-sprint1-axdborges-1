@@ -3,7 +3,7 @@ import createUserService from '../services/createUser.service';
 const createUserController = async (req, res) => {
 	const { name, email, password, isAdm } = req.body;
 
-	const user = await createUserService(name, email, password);
+	const user = await createUserService(name, email, password, isAdm);
 
 	return res.status(201).json(user);
 };

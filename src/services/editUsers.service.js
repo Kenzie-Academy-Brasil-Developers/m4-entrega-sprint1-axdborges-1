@@ -1,7 +1,8 @@
-import { response } from 'express';
 import users from '../database';
 
-const editUsersService = (id, data) => {
+import * as bcrypt from 'bcryptjs';
+
+const editUsersService = async (id, data) => {
 	const user = users.find((element) => element.id === id);
 
 	if (!user) {
@@ -15,7 +16,8 @@ const editUsersService = (id, data) => {
 		user.email = data.email;
 	}
 	if (!!data.password) {
-		user.password = data.password;
+		const hashedPassword = await bcrypt.hash(data.password, 10);
+		user.password = hashedPassword;
 	}
 	user.updatedAt = new Date();
 

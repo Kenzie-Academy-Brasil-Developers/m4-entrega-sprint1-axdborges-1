@@ -10,7 +10,8 @@ const createUserService = async (name, email, password, isAdm) => {
 		name,
 		email,
 		password: hashedPassword,
-		cratedAt: new Date(),
+		isAdm,
+		createdAt: new Date(),
 		updatedAt: new Date(),
 		id: uuidv4(),
 	};
@@ -20,8 +21,8 @@ const createUserService = async (name, email, password, isAdm) => {
 	const userResponse = {
 		name,
 		email,
-		cratedAt: newUser.cratedOn,
-		updatedAt: newUser.updatedOn,
+		cratedAt: newUser.createdAt,
+		updatedAt: newUser.updatedAt,
 		id: newUser.id,
 	};
 

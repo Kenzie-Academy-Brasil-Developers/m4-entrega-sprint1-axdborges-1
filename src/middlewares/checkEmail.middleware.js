@@ -1,5 +1,3 @@
-import createUserService from '../services/createUser.service';
-
 import users from '../database';
 
 const checkEmailMiddleware = (req, res, next) => {
@@ -8,7 +6,7 @@ const checkEmailMiddleware = (req, res, next) => {
 	const userAlreadyExists = users.find((user) => user.email === email);
 
 	if (userAlreadyExists) {
-		return res.status(401).json('This email address is already being used');
+		return res.status(400).json('This email address is already being used');
 	}
 
 	next();
